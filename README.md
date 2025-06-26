@@ -7,7 +7,9 @@ Bu proje, metin girdisinden otomatik olarak YouTube Shorts videoları oluşturan
 - Metni cümlelere ayırma
 - Her cümle için ses dosyası oluşturma (gTTS kullanarak)
 - Her cümle için metin içeren görsel kareler oluşturma (Pillow kullanarak)
+  - Metinler, yarı saydam beyaz bir arka plan kutusu üzerinde siyah renkte görünür.
 - Ses ve görsel kareleri birleştirerek nihai video oluşturma (MoviePy kullanarak)
+- **Video Şablonu Desteği:** İsteğe bağlı olarak, arka plan olarak kullanılacak bir video şablonu seçilebilir.
 - Basit web arayüzü ile metin girişi ve video çıktısı görüntüleme
 
 ## Kurulum
@@ -37,7 +39,7 @@ pip install -r requirements.txt
 
 ### 4. FFmpeg Kurulumu
 
-`moviepy` kütüphanesi videoları işlemek için sisteminizde `ffmpeg`'in kurulu olmasını gerektirir. İşletim sisteminize göre aşağıdaki komutlardan birini kullanabilirsiniz:
+`moviepy` kütüphanesi videoları işlemek için sisteminizde `ffmpeg`'in kurulu olmasını gerektirir. Eğer kurulu değilse, `moviepy` video oluştururken hata verecektir. İşletim sisteminize göre aşağıdaki komutlardan birini kullanarak `ffmpeg`'i yükleyebilirsiniz:
 
 - **macOS (Homebrew ile):**
   ```bash
@@ -59,6 +61,15 @@ mkdir -p static/fonts
 # Montserrat.ttf dosyasını buraya kopyalayın
 ```
 
+### 6. Video Şablonu Ekleme (İsteğe Bağlı)
+
+Arka plan olarak kullanmak istediğiniz video şablonlarını `static/templates/` dizini altına yerleştirin. Desteklenen formatlar `.mp4`, `.mov`, `.avi` vb. olabilir.
+
+```bash
+mkdir -p static/templates
+# template.mp4 dosyasını buraya kopyalayın
+```
+
 ## Kullanım
 
 Uygulamayı başlatmak için sanal ortamınız etkinleştirilmişken aşağıdaki komutu çalıştırın:
@@ -67,7 +78,7 @@ Uygulamayı başlatmak için sanal ortamınız etkinleştirilmişken aşağıdak
 uvicorn app.main:app --reload
 ```
 
-Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tarayıcınızdan bu adresi ziyaret ederek metin girip video oluşturabilirsiniz.
+Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tarayıcınızdan bu adresi ziyaret ederek metin girip video oluşturabilirsiniz. Şablon videoları eklediyseniz, açılır listeden bir şablon seçeneği de göreceksiniz.
 
 ## Proje Yapısı
 
@@ -94,6 +105,8 @@ Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tar
 │   │   └── main.js               # Frontend JavaScript
 │   ├── fonts/                    # Font dosyaları
 │   │   └── Montserrat.ttf
+│   ├── templates/                # Video şablonları
+│   │   └── your_template.mp4
 │   └── temp/                     # Geçici dosyalar (otomatik temizlenir)
 │       ├── audio/
 │       ├── images/

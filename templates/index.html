@@ -5,6 +5,13 @@
     <form action="/generate_short" method="post">
         <label for="text">Enter your text:</label><br>
         <textarea id="text" name="text" rows="10" cols="50"></textarea><br><br>
+        <label for="template_name">Select Template (Optional):</label><br>
+        <select id="template_name" name="template_name">
+            <option value="">No Template</option>
+            {% for template in templates %}
+            <option value="{{ template }}">{{ template }}</option>
+            {% endfor %}
+        </select><br><br>
         <input type="submit" value="Generate Short">
     </form>
 {% endblock %}

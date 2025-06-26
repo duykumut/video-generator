@@ -2,7 +2,7 @@ fastapi
 uvicorn
 pydantic
 gTTS
-Pillow
+Pillow<10
 moviepy
 python-dotenv
 Jinja2

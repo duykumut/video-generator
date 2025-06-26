@@ -5,7 +5,8 @@ from app.utils.file_manager import get_file_path
 
 def create_image_with_text(text: str, image_index: int) -> str:
     """Creates an image with the given text and returns the file path."""
-    img = Image.new('RGB', IMAGE_SIZE, color = BACKGROUND_COLOR)
+    # Create a transparent image
+    img = Image.new('RGBA', IMAGE_SIZE, (0, 0, 0, 0)) # Transparent background
     d = ImageDraw.Draw(img)
 
     try:
@@ -20,6 +21,7 @@ def create_image_with_text(text: str, image_index: int) -> str:
     current_line = []
     for word in words:
         current_line.append(word)
+        # Check if adding the next word exceeds the width
         if font.getlength(' '.join(current_line)) > IMAGE_SIZE[0] - 40: # 20px padding on each side
             lines.append(' '.join(current_line[:-1]))
             current_line = [word]
@@ -34,7 +36,16 @@ def create_image_with_text(text: str, image_index: int) -> str:
     x = (IMAGE_SIZE[0] - text_width) / 2
     y = (IMAGE_SIZE[1] - text_height) / 2
 
-    d.text((x, y), wrapped_text, fill=TEXT_COLOR, font=font, align="center")
+    # Draw a semi-transparent white background box behind the text
+    padding = 20 # Padding around the text
+    box_x1 = x - padding
+    box_y1 = y - padding
+    box_x2 = x + text_width + padding
+    box_y2 = y + text_height + padding
+    d.rectangle([(box_x1, box_y1), (box_x2, box_y2)], fill=(255, 255, 255, 180)) # White with 180 alpha
+
+    # Draw the text in black
+    d.text((x, y), wrapped_text, fill=(0, 0, 0), font=font, align="center")
 
     image_filename = f"frame_{image_index}.png"
     image_filepath = get_file_path(IMAGES_DIR, image_filename)

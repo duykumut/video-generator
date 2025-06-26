@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+gTTS
+Pillow
+moviepy
+python-dotenv
+Jinja2

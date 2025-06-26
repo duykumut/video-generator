@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>YouTube Shorts Generator</h1>
+    <form action="/generate_short" method="post">
+        <label for="text">Enter your text:</label><br>
+        <textarea id="text" name="text" rows="10" cols="50"></textarea><br><br>
+        <input type="submit" value="Generate Short">
+    </form>
+{% endblock %}

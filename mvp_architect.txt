@@ -1,0 +1,56 @@
+📁 Project Structure
+
+youtube_shorts_generator/
+├── app/
+│   ├── main.py                    # FastAPI ana uygulama
+│   ├── models/
+│   │   └── video_models.py        # Pydantic request/response modelleri
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── text_processor.py      # Metin işleme ve cümle ayırma
+│   │   ├── tts_service.py         # gTTS ile ses üretimi
+│   │   ├── image_service.py       # PIL ile görsel oluşturma
+│   │   └── video_service.py       # MoviePy ile video birleştirme
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   └── file_manager.py        # Dosya yönetimi utilities
+│   └── config.py                  # Konfigürasyon ayarları
+├── static/
+│   ├── css/
+│   │   └── style.css             # Basit CSS stilleri
+│   ├── js/
+│   │   └── main.js               # Frontend JavaScript
+│   └── temp/                     # Geçici dosyalar (otomatik temizlenir)
+│       ├── audio/
+│       ├── images/
+│       └── videos/
+├── templates/
+│   ├── base.html                 # Ana template
+│   ├── index.html                # Ana form sayfası
+│   └── result.html               # Sonuç sayfası
+├── requirements.txt              # Python bağımlılıkları
+├── .env                         # Environment variables
+├── .gitignore
+└── README.md
+└── requirements.txt 
+✅ FastAPI + uvicorn - Ana backend framework ✅ gTTS - Ses üretimi ✅ PIL (Pillow) - Görsel oluşturma ✅ MoviePy - Video birleştirme ✅ Jinja2 + Bootstrap - Basit frontend ✅ Local filesystem - Dosya depolama
+🎯 Önemli MVP Özellikleri:
+1.	Basit ve Fonksiyonel: Karmaşık bağımlılık yok
+2.	Async Support: FastAPI ile performanslı
+3.	Modüler Yapı: Her servis ayrı dosyada
+4.	Geçici Dosya Yönetimi: UUID tabanlı session sistemi
+5.	Responsive UI: Bootstrap ile mobil uyumlu
+⚡ Teknik Öneriler
+1. MVP için Kritik Kararlar
+•	Framework: FastAPI (async desteği, performans)
+•	Dosya Yönetimi: Geçici dosyalar için UUID tabanlı klasör yapısı
+•	Video Format: 720x1280 (9:16 - Shorts format)
+•	Ses Kalitesi: gTTS yeterli, ancak ses hızı ayarlanabilir
+
+
+MVP Stack
+Backend: FastAPI + uvicorn
+Video: MoviePy + PIL
+Audio: gTTS
+Frontend: Jinja2 + Bootstrap
+Storage: Local filesystem

@@ -12,6 +12,13 @@
             <option value="{{ template }}">{{ template }}</option>
             {% endfor %}
         </select><br><br>
+        <label for="music_name">Select Background Music (Optional):</label><br>
+        <select id="music_name" name="music_name">
+            <option value="">No Music</option>
+            {% for music in musics %}
+            <option value="{{ music }}">{{ music }}</option>
+            {% endfor %}
+        </select><br><br>
         <input type="submit" value="Generate Short">
     </form>
 {% endblock %}

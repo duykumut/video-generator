@@ -10,6 +10,8 @@ Bu proje, metin girdisinden otomatik olarak YouTube Shorts videoları oluşturan
   - Metinler, yarı saydam beyaz bir arka plan kutusu üzerinde siyah renkte görünür.
 - Ses ve görsel kareleri birleştirerek nihai video oluşturma (MoviePy kullanarak)
 - **Video Şablonu Desteği:** İsteğe bağlı olarak, arka plan olarak kullanılacak bir video şablonu seçilebilir.
+- **Arka Plan Müziği Desteği:** İsteğe bağlı olarak, videoya arka plan müziği eklenebilir. Konuşma sesi ile müziğin seviyeleri ayarlanabilir.
+- Üretilen videolar `static/temp/videos/` dizininde kalıcı olarak saklanır.
 - Basit web arayüzü ile metin girişi ve video çıktısı görüntüleme
 
 ## Kurulum
@@ -70,6 +72,15 @@ mkdir -p static/templates
 # template.mp4 dosyasını buraya kopyalayın
 ```
 
+### 7. Arka Plan Müziği Ekleme (İsteğe Bağlı)
+
+Videoya eklemek istediğiniz arka plan müzik dosyalarını `static/music/` dizini altına yerleştirin. Desteklenen formatlar `.mp3`, `.wav` vb. olabilir.
+
+```bash
+mkdir -p static/music
+# background_music.mp3 dosyasını buraya kopyalayın
+```
+
 ## Kullanım
 
 Uygulamayı başlatmak için sanal ortamınız etkinleştirilmişken aşağıdaki komutu çalıştırın:
@@ -78,7 +89,7 @@ Uygulamayı başlatmak için sanal ortamınız etkinleştirilmişken aşağıdak
 uvicorn app.main:app --reload
 ```
 
-Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tarayıcınızdan bu adresi ziyaret ederek metin girip video oluşturabilirsiniz. Şablon videoları eklediyseniz, açılır listeden bir şablon seçeneği de göreceksiniz.
+Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tarayıcınızdan bu adresi ziyaret ederek metin girip video oluşturabilirsiniz. Şablon videoları ve müzik dosyaları eklediyseniz, ilgili açılır listelerden seçim yapabilirsiniz.
 
 ## Proje Yapısı
 
@@ -107,7 +118,9 @@ Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tar
 │   │   └── Montserrat.ttf
 │   ├── templates/                # Video şablonları
 │   │   └── your_template.mp4
-│   └── temp/                     # Geçici dosyalar (otomatik temizlenir)
+│   ├── music/                    # Arka plan müzikleri
+│   │   └── your_music.mp3
+│   └── temp/                     # Geçici dosyalar (otomatik temizlenmez)
 │       ├── audio/
 │       ├── images/
 │       └── videos/
@@ -127,7 +140,6 @@ Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tar
 
 - Daha gelişmiş metin işleme ve doğal dil anlama (NLP)
 - Farklı video şablonları ve özelleştirme seçenekleri
-- Arka plan müziği ekleme
 - Video düzenleme ve kırpma özellikleri
 - Asenkron video işleme için kuyruk sistemi (örn. Celery, RabbitMQ)
 - Kullanıcı kimlik doğrulama ve video geçmişi

@@ -7,9 +7,14 @@ AUDIO_DIR = os.path.join(TEMP_DIR, "audio")
 IMAGES_DIR = os.path.join(TEMP_DIR, "images")
 VIDEOS_DIR = os.path.join(TEMP_DIR, "videos")
 TEMPLATE_DIR = os.path.join(STATIC_DIR, "templates")
+MUSIC_DIR = os.path.join(STATIC_DIR, "music")
 
-# Ensure template directory exists
+# Ensure template and music directories exist
 os.makedirs(TEMPLATE_DIR, exist_ok=True)
+os.makedirs(MUSIC_DIR, exist_ok=True)
+
+# Audio settings
+MUSIC_VOLUME = 0.2 # 20% of original volume
 
 # Ensure directories exist
 os.makedirs(AUDIO_DIR, exist_ok=True)

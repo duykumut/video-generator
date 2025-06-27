@@ -6,7 +6,7 @@ from pathlib import Path
 import os
 import uuid
 
-from app.config import VIDEOS_DIR, STATIC_DIR, TEMPLATE_DIR
+from app.config import VIDEOS_DIR, STATIC_DIR, TEMPLATE_DIR, MUSIC_DIR
 from app.models.video_models import VideoGenerationRequest, VideoGenerationResponse
 from app.services.text_processor import split_text_into_sentences
 from app.services.tts_service import generate_audio_from_text
@@ -25,11 +25,12 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     template_files = [f for f in os.listdir(TEMPLATE_DIR) if f.endswith((".mp4", ".mov", ".avi"))]
-    return templates.TemplateResponse("index.html", {"request": request, "templates": template_files})
+    music_files = [f for f in os.listdir(MUSIC_DIR) if f.endswith((".mp3", ".wav"))]
+    return templates.TemplateResponse("index.html", {"request": request, "templates": template_files, "musics": music_files})
 
 @app.post("/generate_short", response_class=HTMLResponse)
-async def generate_short(request: Request, text: str = Form(...), template_name: str = Form("")):
-    clean_temp_dirs()
+async def generate_short(request: Request, text: str = Form(...), template_name: str = Form(""), music_name: str = Form("")):
+    
 
     sentences = split_text_into_sentences(text)
 
@@ -44,7 +45,7 @@ async def generate_short(request: Request, text: str = Form(...), template_name:
         image_filepaths.append(image_path)
 
     output_filename = f"short_{uuid.uuid4()}.mp4"
-    final_video_filepath = await create_video_from_audio_and_images(audio_filepaths, image_filepaths, output_filename, template_name)
+    final_video_filepath = await create_video_from_audio_and_images(audio_filepaths, image_filepaths, output_filename, template_name, music_name)
 
     # Convert absolute path to relative URL for frontend
     relative_video_path = os.path.relpath(final_video_filepath, STATIC_DIR)

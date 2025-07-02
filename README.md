@@ -152,7 +152,7 @@ curl -X POST "http://127.0.0.1:8000/api/generate_and_upload_video" \
 **`trigger_upload.py`'yi Çalıştırma:**
 
 ```bash
-/Users/user/Desktop/works/youtube_shorts_generator/venv/bin/python /Users/user/Desktop/works/youtube_shorts_generator/trigger_upload.py
+./venv/bin/python trigger_upload.py
 ```
 
 Bu betiği belirli aralıklarla çalıştırmak için Cron (Linux/macOS) veya Görev Zamanlayıcı (Windows) gibi harici bir zamanlayıcı kullanabilirsiniz.
@@ -160,7 +160,7 @@ Bu betiği belirli aralıklarla çalıştırmak için Cron (Linux/macOS) veya G�
 **Cron Job Örneği (her saat başı çalıştırmak için):**
 
 ```cron
-0 * * * * /Users/user/Desktop/works/youtube_shorts_generator/venv/bin/python /Users/user/Desktop/works/youtube_shorts_generator/trigger_upload.py >> /Users/user/Desktop/works/youtube_shorts_generator/cron.log 2>&1
+0 * * * * /bin/bash -c "source venv/bin/activate && python trigger_upload.py >> cron.log 2>&1"
 ```
 
 ## Proje Yapısı

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Video Uploaded Successfully!</h1>
+    <p>Your video has been successfully uploaded to YouTube.</p>
+    <p>You can view it here: <a href="{{ youtube_video_url }}" target="_blank">{{ youtube_video_url }}</a></p>
+    <p><a href="/">Generate another Short</a></p>
+{% endblock %}

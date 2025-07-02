@@ -12,6 +12,8 @@ Bu proje, metin girdisinden otomatik olarak YouTube Shorts videoları oluşturan
 - **Video Şablonu Desteği:** İsteğe bağlı olarak, arka plan olarak kullanılacak bir video şablonu seçilebilir.
 - **Arka Plan Müziği Desteği:** İsteğe bağlı olarak, videoya arka plan müziği eklenebilir. Konuşma sesi ile müziğin seviyeleri ayarlanabilir.
 - Üretilen videolar `static/temp/videos/` dizininde kalıcı olarak saklanır.
+- **YouTube Otomatik Yükleme:** Üretilen videoları doğrudan YouTube'a yükleme yeteneği.
+- **API Üzerinden Otomatik Video Oluşturma ve Yükleme:** JSON payload ile programatik olarak video oluşturma ve YouTube'a yükleme.
 - Basit web arayüzü ile metin girişi ve video çıktısı görüntüleme
 
 ## Kurulum
@@ -81,7 +83,21 @@ mkdir -p static/music
 # background_music.mp3 dosyasını buraya kopyalayın
 ```
 
+### 8. YouTube API Kimlik Bilgileri
+
+YouTube'a video yüklemek için Google Cloud projenizden OAuth 2.0 kimlik bilgilerine ihtiyacınız var. Bu bilgileri doğrudan Git deposuna yüklemeyin. Bunun yerine, projenizin kök dizinindeki `.env` dosyasına aşağıdaki gibi ekleyin:
+
+```
+GOOGLE_CLIENT_ID=YOUR_CLIENT_ID.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=YOUR_CLIENT_SECRET
+```
+
+- **`YOUR_CLIENT_ID`** ve **`YOUR_CLIENT_SECRET`** yerine kendi Google Cloud Console'dan aldığınız değerleri yapıştırın.
+- İlk yükleme denemenizde bir tarayıcı penceresi açılacak ve Google hesabınızla kimlik doğrulama yapmanız istenecektir. Kimlik doğrulama başarılı olduğunda, erişim jetonları `token.pickle` dosyasına kaydedilecektir. Bu dosyayı da `.gitignore`'a eklemeyi unutmayın.
+
 ## Kullanım
+
+### Web Arayüzü Üzerinden
 
 Uygulamayı başlatmak için sanal ortamınız etkinleştirilmişken aşağıdaki komutu çalıştırın:
 
@@ -89,7 +105,63 @@ Uygulamayı başlatmak için sanal ortamınız etkinleştirilmişken aşağıdak
 uvicorn app.main:app --reload
 ```
 
-Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tarayıcınızdan bu adresi ziyaret ederek metin girip video oluşturabilirsiniz. Şablon videoları ve müzik dosyaları eklediyseniz, ilgili açılır listelerden seçim yapabilirsiniz.
+Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tarayıcınızdan bu adresi ziyaret ederek metin girip video oluşturabilirsiniz. Şablon videoları ve müzik dosyaları eklediyseniz, ilgili açılır listelerden seçim yapabilirsiniz. Video oluşturulduktan sonra YouTube'a yükleme seçenekleri sunulacaktır.
+
+### API Endpoint Üzerinden (Otomatik Yükleme İçin)
+
+Uygulama, JSON payload ile otomatik video oluşturma ve YouTube'a yükleme için bir API endpoint'i sunar.
+
+- **URL:** `http://127.0.0.1:8000/api/generate_and_upload_video`
+- **HTTP Yöntemi:** `POST`
+- **İçerik Tipi (Content-Type):** `application/json`
+
+**JSON Yükü Yapısı:**
+
+```json
+{
+    "text": "string",
+    "music_name": "string (optional)",
+    "template_name": "string (optional)",
+    "youtube_title": "string",
+    "youtube_description": "string (optional)",
+    "youtube_tags": ["string", "string", "..."] (optional),
+    "youtube_privacy_status": "string" (public, private, unlisted)
+}
+```
+
+**Örnek `curl` Komutu:**
+
+```bash
+curl -X POST "http://127.0.0.1:8000/api/generate_and_upload_video" \
+-H "Content-Type: application/json" \
+-d '{
+    "text": "Bu bir API testi videosudur. Otomatik olarak oluşturuldu ve yüklendi.",
+    "music_name": "your_music_file.mp3",
+    "template_name": "your_template_video.mp4",
+    "youtube_title": "API Test Videosu - Yeni Deneme",
+    "youtube_description": "Bu video API endpoint üzerinden gönderilen JSON verisi ile oluşturulmuştur.",
+    "youtube_tags": ["api", "test", "fastapi", "youtube"],
+    "youtube_privacy_status": "unlisted"
+}'
+```
+
+### Otomatik Çalıştırma (Cron Job Örneği)
+
+`content.json` dosyasındaki verileri kullanarak videoları otomatik olarak oluşturmak ve yüklemek için `trigger_upload.py` betiğini kullanabilirsiniz. Bu betik, her çalıştığında `content.json`'daki işlenmemiş videoları bulur ve yükler. İşlenen videolar `processed_videos.txt` dosyasına kaydedilir.
+
+**`trigger_upload.py`'yi Çalıştırma:**
+
+```bash
+/Users/user/Desktop/works/youtube_shorts_generator/venv/bin/python /Users/user/Desktop/works/youtube_shorts_generator/trigger_upload.py
+```
+
+Bu betiği belirli aralıklarla çalıştırmak için Cron (Linux/macOS) veya Görev Zamanlayıcı (Windows) gibi harici bir zamanlayıcı kullanabilirsiniz.
+
+**Cron Job Örneği (her saat başı çalıştırmak için):**
+
+```cron
+0 * * * * /Users/user/Desktop/works/youtube_shorts_generator/venv/bin/python /Users/user/Desktop/works/youtube_shorts_generator/trigger_upload.py >> /Users/user/Desktop/works/youtube_shorts_generator/cron.log 2>&1
+```
 
 ## Proje Yapısı
 
@@ -104,7 +176,8 @@ Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tar
 │   │   ├── text_processor.py      # Metin işleme ve cümle ayırma
 │   │   ├── tts_service.py         # gTTS ile ses üretimi
 │   │   ├── image_service.py       # PIL ile görsel oluşturma
-│   │   └── video_service.py       # MoviePy ile video birleştirme
+│   │   ├── video_service.py       # MoviePy ile video birleştirme
+│   │   └── youtube_service.py     # YouTube API entegrasyonu
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   └── file_manager.py        # Dosya yönetimi utilities
@@ -128,12 +201,17 @@ Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tar
 │   ├── base.html                 # Ana template
 │   ├── index.html                # Ana form sayfası
 │   ├── result.html               # Sonuç sayfası
+│   ├── youtube_upload_success.html # YouTube yükleme başarı sayfası
+│   ├── youtube_upload_failure.html # YouTube yükleme hata sayfası
 │   ├── header.html               # Header parçası
 │   └── footer.html               # Footer parçası
 ├── requirements.txt              # Python bağımlılıkları
-├── .env                         # Environment variables
-├── .gitignore
-└── README.md
+├── .env                         # Ortam değişkenleri (hassas bilgiler)
+├── .gitignore                   # Git tarafından göz ardı edilecek dosyalar
+├── README.md                    # Proje dokümantasyonu
+├── content.json                 # Otomatik yükleme için JSON veri dosyası
+├── trigger_upload.py            # Otomatik yükleme betiği
+└── processed_videos.txt         # İşlenmiş videoların kaydı
 ```
 
 ## Gelecek Geliştirmeler
@@ -141,5 +219,5 @@ Uygulama `http://127.0.0.1:8000` adresinde çalışmaya başlayacaktır. Web tar
 - Daha gelişmiş metin işleme ve doğal dil anlama (NLP)
 - Farklı video şablonları ve özelleştirme seçenekleri
 - Video düzenleme ve kırpma özellikleri
-- Asenkron video işleme için kuyruk sistemi (örn. Celery, RabbitMQ)
-- Kullanıcı kimlik doğrulama ve video geçmişi
+- Farklı seslendirme seçenekleri (erkek/kadın, farklı diller/aksiyonlar)
+- Video efektleri ve geçişler

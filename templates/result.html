@@ -7,4 +7,22 @@
         Your browser does not support the video tag.
     </video>
     <p><a href="/">Generate another Short</a></p>
+
+    <h2>Upload to YouTube</h2>
+    <form action="/upload_to_youtube" method="post">
+        <input type="hidden" name="video_filepath" value="{{ video_filepath }}">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="5" cols="50"></textarea><br><br>
+        <label for="tags">Tags (comma-separated):</label><br>
+        <input type="text" id="tags" name="tags"><br><br>
+        <label for="privacy_status">Privacy Status:</label><br>
+        <select id="privacy_status" name="privacy_status">
+            <option value="private">Private</option>
+            <option value="unlisted">Unlisted</option>
+            <option value="public">Public</option>
+        </select><br><br>
+        <input type="submit" value="Upload to YouTube">
+    </form>
 {% endblock %}

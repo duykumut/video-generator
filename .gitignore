@@ -7,9 +7,11 @@ __pycache__/
 # Virtual environment
 venv/
 .env
+token.pickle
 
 # Temporary files
 static/temp/
+static/templates
 
 # IDE specific files
 .idea/
@@ -18,3 +20,5 @@ static/temp/
 # OS generated files
 .DS_Store
 thumbs.db
+
+processed_videos.txt

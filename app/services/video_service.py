@@ -45,17 +45,14 @@ async def create_video_from_audio_and_images(audio_filepaths: list[str], image_f
         clips = []
         current_time = 0
 
-        for i, audio_path in enumerate(audio_filepaths):
-            audio_clip = AudioFileClip(audio_path)
-            duration = audio_clip.duration
-
+        for i, audio_clip in enumerate(audio_clips):
             image_clip = ImageSequenceClip([image_filepaths[i]], fps=FPS)
-            image_clip = image_clip.set_duration(duration)
+            image_clip = image_clip.set_duration(audio_clip.duration)
             image_clip = image_clip.set_audio(audio_clip)
             image_clip = image_clip.set_start(current_time)
 
             clips.append(image_clip)
-            current_time += duration
+            current_time += audio_clip.duration
 
         final_clip = CompositeVideoClip(clips, size=IMAGE_SIZE)
         final_clip = final_clip.set_audio(final_audio_clip)

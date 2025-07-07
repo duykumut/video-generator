@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 pydantic
-gTTS
+elevenlabs
 Pillow
 moviepy==1.0.3
 google-api-python-client

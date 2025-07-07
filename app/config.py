@@ -33,3 +33,6 @@ TEXT_WRAP_WIDTH = 20 # Characters per line before wrapping
 # YouTube API Settings
 # Place your client_secrets.json file in the root directory of the project.
 # This file contains your OAuth 2.0 client ID and client secret.
+
+# ElevenLabs API Key
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")

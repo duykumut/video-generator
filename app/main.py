@@ -1,5 +1,11 @@
 from fastapi import FastAPI, Request, Form, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
+import PIL.Image
+# Pillow'un yeni sürümlerinde kaldırılan ANTIALIAS özelliğini manuel olarak ekleyin
+# Bu, moviepy gibi eski kütüphanelerin uyumluluğu için gereklidir
+if not hasattr(PIL.Image, 'ANTIALIAS'):
+    PIL.Image.ANTIALIAS = PIL.Image.Resampling.LANCZOS
+
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
@@ -45,7 +51,7 @@ async def generate_short(request: Request, text: str = Form(...), template_name:
         image_path = create_image_with_text(sentence, i)
         image_filepaths.append(image_path)
 
-    output_filename = f"short_{uuid.uuid4()}.mp4"
+    output_filename = f"video_{uuid.uuid4()}.mp4"
     final_video_filepath = await create_video_from_audio_and_images(audio_filepaths, image_filepaths, output_filename, template_name, music_name)
 
     # Convert absolute path to relative URL for frontend

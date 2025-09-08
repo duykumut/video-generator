@@ -22,7 +22,7 @@ def create_image_with_text(text: str, image_index: int) -> str:
     for word in words:
         current_line.append(word)
         # Check if adding the next word exceeds the width
-        if font.getlength(' '.join(current_line)) > IMAGE_SIZE[0] - 40: # 20px padding on each side
+        if font.getlength(' '.join(current_line)) > IMAGE_SIZE[0] - 140: # 70px padding on each side
             lines.append(' '.join(current_line[:-1]))
             current_line = [word]
     lines.append(' '.join(current_line))

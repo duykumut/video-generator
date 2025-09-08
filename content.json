@@ -1,92 +1,29 @@
 [
   {
-    "text": "Bir dondurma 10₺. İki çocuğun toplam 10₺'si var. Ama her biri 10₺'lik dondurma alıyor. Nasıl mümkün?",
+    "text": "Bir adada yaşayan insanlar sadece iki tiptir: biri her zaman doğruyu söyler, diğeri her zaman yalan söyler. Ada yol ayrımında birine denk gelirsin ve ona şunu sorarsın: 'Senin köyüne gitsem, orada bana kuzeye gitmem söylenir mi?' Adam “Evet” der. Hangi yöne gitmelisin?",
     "music_name": "iqSound.mp3",
     "template_name": "iqVideos.mp4",
-    "youtube_title": "10 Liralık Dondurma, 10 Lira Para!",
-    "youtube_description": "Soru: 2 çocuğun toplam 10₺'si var ama her biri 10₺'lik dondurma alıyor. Nasıl olur?\nCevap: Birlikte alıp paylaşıyorlar. Her biri 5₺ veriyor, toplam 10₺.",
-    "youtube_tags": ["mantık-sorusu", "para-sorusu", "zeka-sorusu", "çeldirici", "kısa-soru"],
+    "youtube_title": "Yalan Söyleyenler Adasında Hangi Yön Doğru?",
+    "youtube_description": "Soru: Ada halkı ya hep yalan söyler ya da hep doğru. 'Senin köyüne gitsem bana kuzeye gitmem söylenir mi?' diye sordun. Cevap evet. Hangi yöne gitmelisin?\n\nCevap: Güney. Çünkü hem yalancı hem doğru kişi aynı cevabı verir ve ters yöne yönlendirirler. Cevabı tersine almalısın.\n\n🌍 Mantık işte böyle çalışır! Sen bu tarz soruları seviyor musun? Hemen abone ol, yeni videoları kaçırma!",
+    "youtube_tags": ["mantık-sorusu","ada-bilmecesi","doğru-yalancı","yön","zeka"],
     "youtube_privacy_status": "public"
   },
   {
-    "text": "Bir kalem ve silgi toplam 1.10₺. Kalem, silgiden 1₺ pahalı. Silgi kaç lira?",
+    "text": "Bir tren sabah 08:00’de Ankara’dan İstanbul’a doğru yola çıkıyor ve saatte 100 km hızla ilerliyor. Aynı anda İstanbul’dan da başka bir tren Ankara’ya doğru geliyor, o da saatte 100 km hızla gidiyor. Tam ortada karşılaştıklarında hangi tren daha fazla yol almıştır?",
     "music_name": "iqSound.mp3",
     "template_name": "iqVideos.mp4",
-    "youtube_title": "Kalem ve Silgi Sırrı!",
-    "youtube_description": "Soru: Kalem + silgi = 1.10₺, kalem silgiden 1₺ pahalı. Silgi kaç lira?\nCevap: Silgi 0.05₺, kalem 1.05₺. Toplam: 1.10₺.",
-    "youtube_tags": ["mantık-sorusu", "para-hilesi", "zeka", "alışveriş-sorusu", "kısa-test"],
+    "youtube_title": "İki Tren Ortada Karşılaşırsa Hangisi Daha Fazla Gitti?",
+    "youtube_description": "Soru: İki tren aynı anda zıt yönlere 100 km hızla çıkıyor ve tam ortada karşılaşıyorlar. Hangisi daha fazla yol almıştır?\n\nCevap: Hiçbiri. İkisi de aynı anda yola çıktığı ve aynı hızda gittiği için eşit yol almışlardır.\n\n🚆 Sorunun içinde gizli sade bir mantık var. Fark ettin mi? Daha fazlası için takipte kal!",
+    "youtube_tags": ["mantık-sorusu","tren-sorusu","hareket-problemi","çeldirici","zeka"],
     "youtube_privacy_status": "public"
   },
   {
-    "text": "3 işçi 3 günde 3 kutu taşıyor. 9 işçi 9 kutuyu kaç günde taşır?",
+    "text": "Bir odada 3 ampul ve dışarda bu ampullere bağlı 3 anahtar var. Odaya sadece bir kez girebilirsin. Hangi anahtar hangi ampule ait, nasıl bulursun?",
     "music_name": "iqSound.mp3",
     "template_name": "iqVideos.mp4",
-    "youtube_title": "Kutuları Kaç Günde Taşırlar?",
-    "youtube_description": "Soru: 3 işçi 3 günde 3 kutu. 9 işçi 9 kutuyu kaç günde taşır?\nCevap: Aynı oranla 3 gün. Çünkü işçi/kutu oranı sabit.",
-    "youtube_tags": ["mantık-sorusu", "işçi-sorusu", "orantı", "kısa-zeka", "çeldirici"],
-    "youtube_privacy_status": "public"
-  },
-  {
-    "text": "Bir otobüs 20 km/s hızla gidiyor. Önünde bir bisikletli var, 15 km/s. Otobüs geçemez. Neden?",
-    "music_name": "iqSound.mp3",
-    "template_name": "iqVideos.mp4",
-    "youtube_title": "Otobüs Neden Geçemiyor?",
-    "youtube_description": "Soru: Otobüs 20, bisikletli 15 km/s. Otobüs neden geçemiyor?\nCevap: Çünkü otobüs park halinde. Soru yanıltıyor.",
-    "youtube_tags": ["mantık-sorusu", "kafa-karıştırıcı", "kısa-mantık", "hız-sorusu", "zeka"],
-    "youtube_privacy_status": "public"
-  },
-  {
-    "text": "Bir adam 10₺’lik tişört alır. 20₺ verir. Kasiyer 10₺ para üstü verir. Hırsızlık var mı?",
-    "music_name": "iqSound.mp3",
-    "template_name": "iqVideos.mp4",
-    "youtube_title": "Hırsızlık Var mı?",
-    "youtube_description": "Soru: 10₺'lik tişörte 20₺ verilir, 10₺ üst alınır. Hırsızlık var mı?\nCevap: Hayır. Her şey normal. Para üstü doğru verilmiş.",
-    "youtube_tags": ["mantık-sorusu", "alışveriş", "kısa-soru", "hileli-soru", "zeka"],
-    "youtube_privacy_status": "public"
-  },
-  {
-    "text": "Bir adam 50₺ ile pazara gidiyor. 30₺ harcıyor, 20₺’si kalıyor. 10₺ daha buluyor. Kaç lirası var?",
-    "music_name": "iqSound.mp3",
-    "template_name": "iqVideos.mp4",
-    "youtube_title": "Adamın Kaç Lirası Var?",
-    "youtube_description": "Soru: Adam 50₺ ile gider, 30₺ harcar, 10₺ bulur. Kaç lirası olur?\nCevap: 20 + 10 = 30₺ olur.",
-    "youtube_tags": ["mantık-sorusu", "para-sorusu", "kısa-cevap", "zeka-test", "hesaplama"],
-    "youtube_privacy_status": "public"
-  },
-  {
-    "text": "Bir çorap çiftinin biri siyah biri beyaz. Karanlıkta çekiyorsun. En az kaç çekersem eş bulurum?",
-    "music_name": "iqSound.mp3",
-    "template_name": "iqVideos.mp4",
-    "youtube_title": "Eş Çorap İçin Kaç Tane?",
-    "youtube_description": "Soru: Karanlıkta çekiyorsun. En az kaç çorapla eş bulursun?\nCevap: 3 tane. En kötü ihtimalle iki farklı renk, üçüncü eşleşir.",
-    "youtube_tags": ["mantık-sorusu", "olasılık", "zeka", "çorap-sorusu", "kısa-video"],
-    "youtube_privacy_status": "public"
-  },
-  {
-    "text": "Bir babanın 4 oğlu vardır. Her birinin bir kız kardeşi vardır. Kaç çocuğu var?",
-    "music_name": "iqSound.mp3",
-    "template_name": "iqVideos.mp4",
-    "youtube_title": "Kaç Çocuğu Var?",
-    "youtube_description": "Soru: 4 oğlu ve her birinin bir kız kardeşi var. Kaç çocuk?\nCevap: 5. Tüm oğulların ortak 1 kız kardeşi var.",
-    "youtube_tags": ["mantık-sorusu", "aile-sorusu", "kısa-zeka", "çeldirici", "soru-cevap"],
-    "youtube_privacy_status": "public"
-  },
-  {
-    "text": "Bir çiftlikte 17 koyun var. 9’u kaçtı. Kaç koyun kaldı?",
-    "music_name": "iqSound.mp3",
-    "template_name": "iqVideos.mp4",
-    "youtube_title": "Koyunlar Kaçtı, Kaç Kaldı?",
-    "youtube_description": "Soru: 17 koyun var, 9’u kaçtı. Kaç kaldı?\nCevap: Hepsi kaçtıysa 0 kalır. Ama sadece 9'u kaçtıysa 8 kaldı.",
-    "youtube_tags": ["mantık-sorusu", "hayvan-sorusu", "kısa-test", "zeka-videoları", "matematik"],
-    "youtube_privacy_status": "public"
-  },
-  {
-    "text": "Bir baba oğluna 'Bu benim babamın tek oğludur' diyor. Bu adam kimdir?",
-    "music_name": "iqSound.mp3",
-    "template_name": "iqVideos.mp4",
-    "youtube_title": "Bu Adam Kim?",
-    "youtube_description": "Soru: Baba, 'Bu benim babamın tek oğludur' diyor. Bu adam kimdir?\nCevap: Kendisi. Çünkü babasının tek oğlu kendisidir.",
-    "youtube_tags": ["mantık-sorusu", "kısa-zeka", "sözlü-soru", "çeldirici", "video-zeka"],
+    "youtube_title": "Ampuller ve Anahtarlar Zeka Sorusu!",
+    "youtube_description": "Soru: 3 anahtar ve içeride 3 ampul var. Odaya sadece bir kez girme hakkın var. Hangi anahtar hangi ampule ait, nasıl anlarsın?\n\nCevap: Birini açıp bir süre bekle, sonra kapat. Diğerini açık bırak. Odaya girince biri sıcak (ilk anahtar), biri yanıyor (ikinci anahtar), diğeri kapalı ve soğuk (üçüncü anahtar).\n\n💡 Fiziksel düşünme zamanı! Bu tarz sorulara bayılıyorsan hemen abone ol!",
+    "youtube_tags": ["mantık-sorusu","ampul-anahtar","fiziksel-bulmaca","çeldirici","zeka"],
     "youtube_privacy_status": "public"
   }
 ]

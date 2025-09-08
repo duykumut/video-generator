@@ -34,9 +34,7 @@ if __name__ == "__main__":
         processed_videos = load_processed_videos(PROCESSED_VIDEOS_FILE)
         
         for i, video_data in enumerate(video_data_list):
-            # YouTube başlığına benzersiz bir kimlik ekle
-            # Bu, her çalıştırmada benzersiz bir başlık oluşturur
-            current_youtube_title = f"{video_data["youtube_title"]} - {os.urandom(4).hex()}"
+            current_youtube_title = video_data["youtube_title"]
             
             if current_youtube_title in processed_videos:
                 print(f"Video {i+1}: '{current_youtube_title}' zaten işlenmiş, atlanıyor.")
@@ -46,7 +44,6 @@ if __name__ == "__main__":
             
             # API'ye gönderilecek payload'ı hazırla
             payload = video_data.copy()
-            payload["youtube_title"] = current_youtube_title
 
             try:
                 response = requests.post(FASTAPI_URL, data=json.dumps(payload), headers=headers)
